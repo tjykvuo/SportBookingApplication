@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Body Pump Page</title>
+    </h:head>
+    <h:body>
+        <h1><h:outputText value="Body Pump Information"/></h1>
+        <h:form>
+            <f:view>
+                <h:dataTable value="#{lessonBean.lessonList}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            Lesson Code
+                        </f:facet>
+                        #{item.sportno}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Start Time
+                        </f:facet>
+                        #{item.starttime}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            End Time
+                        </f:facet>
+                        #{item.endtime}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Instructor Number
+                        </f:facet>
+                        #{item.instructorno}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Price
+                        </f:facet>
+                        #{item.price}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Booking
+                        </f:facet>
+                        #{item.availablespaces}
+                    </h:column>
+                    <h:column>
+                        <f:facet name = "header">
+                            Booking
+                        </f:facet>
+                        <h:commandLink onclick="if (!confirm('Do you want to book a lesson?')) return false;"
+                          value="Book Lesson"
+                          action="#{lessonBean.setAvailableSpaces(item)}"
+                          rendered="#{item.availablespaces>0}">
+                        </h:commandLink>
+                    </h:column>
+            </h:dataTable>
+        </f:view>
+            <h:commandButton value= "Sport" action="SportPage.xhtml"/>
+    </h:form>
+</h:body>
+</html>
+
